@@ -1,4 +1,5 @@
-import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid';
+import PropTypes from 'prop-types';
+import { TrashIcon } from '@heroicons/react/16/solid';
 import { deleteContact } from '../../ultilities/contactsStorage';
 
 export default function ContactRow({ contact, refreshContacts }) {
@@ -52,3 +53,17 @@ export default function ContactRow({ contact, refreshContacts }) {
     </tr>
   );
 }
+
+// PropTypes for validation
+ContactRow.propTypes = {
+  contact: PropTypes.shape({
+    uuid: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
+    fullName: PropTypes.string.isRequired,
+    role: PropTypes.string,
+    email: PropTypes.string,
+    phoneNumber: PropTypes.string.isRequired,
+    note: PropTypes.string,
+  }).isRequired,
+  refreshContacts: PropTypes.func.isRequired,
+};

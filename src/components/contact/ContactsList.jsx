@@ -1,7 +1,7 @@
 import ContactRow from './ContactRow';
 import ContactsListHeader from './ContactsListHeader';
 import { getContacts } from '../../ultilities/contactsStorage';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function ContactsList() {
   const [contacts, setContacts] = useState(getContacts());
