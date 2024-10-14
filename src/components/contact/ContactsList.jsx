@@ -4,8 +4,15 @@ import {
 } from '@heroicons/react/16/solid';
 import ContactRow from './ContactRow';
 import ContactsListPagination from './ContactsListPagination';
+import { getContacts } from '../../ultilities/contactsStorage';
+import { useState } from 'react';
 
-export default function ContactsList({ contacts = [] }) {
+export default function ContactsList() {
+  const [contacts, setContacts] = useState(getContacts());
+  const refreshContacts = () => {
+    setContacts(getContacts());
+  }
+
   return (
     <>
       <div className='p-0 overflow-scroll'>
@@ -42,14 +49,14 @@ export default function ContactsList({ contacts = [] }) {
             {
               contacts.map(c => {
                 return (
-                  <ContactRow key={c.email} contact={c} />
+                  <ContactRow key={c.uuid} contact={c} refreshContacts={refreshContacts} />
                 )
               })
             }
           </tbody>
         </table>
       </div>
-      <ContactsListPagination />
+      {/* <ContactsListPagination /> */}
     </>
   );
 }

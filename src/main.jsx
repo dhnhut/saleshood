@@ -8,7 +8,7 @@ import Root from './routers/root.jsx';
 import ErrorPage from './routers/error-page.jsx';
 import LandingPage from './routers/landing-page.jsx';
 import Contacts from './routers/contacts.jsx';
-import Contact from './routers/contact.jsx';
+import ContactForm from './routers/contact-form.jsx';
 
 import './index.css'
 
@@ -28,11 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "contacts/new",
-        element: <Contact />,
-      },
-      {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        element: <ContactForm />,
       },
     ],
   },
