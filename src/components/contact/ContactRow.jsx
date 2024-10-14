@@ -12,7 +12,7 @@ export default function ContactRow({ contact }) {
           />
           <div className='flex flex-col'>
             <p className='text-sm font-semibold text-slate-700'>
-              {contact.name}
+              `{contact.name}``
             </p>
             <p className='text-sm text-slate-500'>{contact.role}</p>
           </div>
