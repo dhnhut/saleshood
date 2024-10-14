@@ -41,14 +41,35 @@ const saveContacts = (contacts) => {
   localStorage.setItem('contacts', JSON.stringify(contacts));
 };
 
-export function getContacts() {
-  return JSON.parse(localStorage.getItem('contacts'));
+export function getContacts(field, direction) {
+  let contacts = JSON.parse(localStorage.getItem('contacts'));
+
+  if (field) {
+    contacts.sort((a, b) => {
+      direction === 'asc' ? a[field] - b[field] : b[field] - a[field];
+    });
+
+    contacts.sort((a, b) => {
+      const fieldA = a[field] ? a[field].toString().toLowerCase() : '';
+      const fieldB = b[field] ? b[field].toString().toLowerCase() : '';
+  
+      if (fieldA < fieldB) {
+        return direction === 'asc' ? -1 : 1;
+      }
+      if (fieldA > fieldB) {
+        return direction === 'asc' ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+
+  return contacts;
 }
 
 export function createContact(contact) {
   let contacts = getContacts();
   contacts.push(contact);
-  saveContacts(contacts)
+  saveContacts(contacts);
 }
 
 export function getContact(uuid) {
